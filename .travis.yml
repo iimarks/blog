@@ -1,0 +1,27 @@
+language: node_js # 设置语言
+node_js: stable # 设置相应版本
+before_install:
+    - yarn install hexo-cli -g
+install:
+    - yarn install # 安装hexo及插件
+script:
+    - hexo clean # 清除
+    - hexo g # 生成
+after_script:
+    - cd ./public
+    - git init
+    - git config user.name "blue-bird1" # 修改name
+    - git config user.email "linlanxi7552659@gmail.com" # 修改email
+    - git add .
+    - git commit -m "Travis CI Auto Builder"
+    - git push --force --quiet "https://${github_key}@${GH_REF}" master:master # GH_TOKEN是在Travis中配置token的名称
+branches:
+    only:
+        - source #只监测hexo分支，hexo是我的分支的名称，可根据自己情况设置
+env:
+    global:
+        - GH_REF: github.com/blue-bird1/blue-bird1.github.io.git
+cache:
+    apt: true
+    directories:
+        - node_modules # 缓存不经常更改的内容
