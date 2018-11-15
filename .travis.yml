@@ -1,9 +1,11 @@
 language: node_js # 设置语言
 node_js: stable # 设置相应版本
 before_install:
-    - global add hexo-cli
+    - yarn global add hexo-cli
 install:
     - yarn install # 安装hexo及插件
+    - git submodule init
+    - git submodule update
 script:
     - hexo clean # 清除
     - hexo g # 生成
