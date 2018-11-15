@@ -1,0 +1,3 @@
+[submodule "themes/gal"]
+	path = themes/gal
+	url = https://github.com/Earth-Online/hexo-theme-gal
