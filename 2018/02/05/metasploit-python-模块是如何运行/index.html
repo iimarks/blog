@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="bluebird">
+    
+    
+    
+    
+    
+    
+    <title>metasploit python 模块是如何运行 | 青鸟 Blog</title>
+    <link href=”http://blue-bird1.github.io“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="http://blue-bird1.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://blue-bird1.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">青鸟 Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/网络安全/">网络安全</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/网络安全/">网络安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/web安全/">web安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/编程技术/">编程技术</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://blue-bird1.github.io">青鸟 Blog</a>
+        >
+        <span>metasploit python 模块是如何运行</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/编程技术/">编程技术</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-02-05
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-02-05
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/编程技术/">编程技术</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>metasploit的扩展实现的代码主要在<code>metasploit-framework/lib/msf/core/modules/external</code><br>目录结构如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── bridge.rb</span><br><span class="line">├── message.rb</span><br><span class="line">├── python</span><br><span class="line">│   ├── async_timeout</span><br><span class="line">│   │   ├── __init__.py</span><br><span class="line">│   └── metasploit</span><br><span class="line">│       ├── __init__.py</span><br><span class="line">│       ├── __init__.pyc</span><br><span class="line">│       ├── module.py</span><br><span class="line">│       ├── module.pyc</span><br><span class="line">│       ├── probe_scanner.py</span><br><span class="line">├── shim.rb</span><br><span class="line">└── templates</span><br><span class="line">    ├── capture_server.erb</span><br><span class="line">    ├── common_metadata.erb</span><br><span class="line">    ├── dos.erb</span><br><span class="line">    ├── multi_scanner.erb</span><br><span class="line">    └── remote_exploit_cmd_stager.erb</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>python</code>目录的py代码将会在我们运行python模块时加入python路径.这也是为什么我们能导入<code>metasploit</code><br><code>templates</code>目录则是用于实现将python代码变成模块的代码模板.事实上我们能使用msf对正常模块的功能 如<code>info</code>都是靠这些模板实现的.<br><code>message.rb</code>和<code>bridge</code>是与msf jsonrpc通信的一些api.<br><code>shim.rb</code>则是真正将python代码实现为模块的代码.</p>
+<p>这里省略了不重要的细节的<code>message.rb</code>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Msf::Modules::External::Message</span><br><span class="line"> </span><br><span class="line">  def self.from_module(j)                                                                                        </span><br><span class="line">    if j[&apos;method&apos;]</span><br><span class="line">      m = self.new(j[&apos;method&apos;].to_sym)</span><br><span class="line">      m.params = j[&apos;params&apos;]</span><br><span class="line">      m</span><br><span class="line">    elsif j[&apos;response&apos;]</span><br><span class="line">      m = self.new(:reply)</span><br><span class="line">      m.params = j[&apos;response&apos;]</span><br><span class="line">      m.id = j[&apos;id&apos;]</span><br><span class="line">      m</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line"> </span><br><span class="line">  def initialize(m)</span><br><span class="line">    self.method = m</span><br><span class="line">    self.params = &#123;&#125;</span><br><span class="line">    self.id = Base64.strict_encode64(SecureRandom.random_bytes(16))</span><br><span class="line">  end</span><br><span class="line"> </span><br><span class="line">  def to_json</span><br><span class="line">    params =</span><br><span class="line">      if self.params.respond_to? :to_nested_values</span><br><span class="line">        self.params.to_nested_values</span><br><span class="line">      else</span><br><span class="line">        self.params.to_h</span><br><span class="line">      end</span><br><span class="line">    JSON.generate(&#123;jsonrpc: &apos;2.0&apos;, id: self.id, method: self.method, params: params&#125;)</span><br><span class="line">  end</span><br></pre></td></tr></table></figure></p>
+<p>这个类实际上是对传递给metasploit的信息的一个封装.<br><code>initialize</code>是ruby的初始化方法 从这里可以看到它有三个属性<code>method</code> <code>params</code> <code>id</code> </p>
+<p><code>from_module</code>方法则是用于将传递的参数转换成自身<br><code>to_json</code>方法很明显就是转换成一个可用的json(jsonrpc传递需要json格式)</p>
+<p>这里是省略了不重要的细节的<code>bridge.rb</code>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">require &apos;msf/core/modules/external/message&apos;</span><br><span class="line"></span><br><span class="line">class Msf::Modules::External::Bridge</span><br><span class="line">  </span><br><span class="line">  # 通过jsonrpc运行</span><br><span class="line">  def run(datastore)</span><br><span class="line">    unless self.running</span><br><span class="line">      m = Msf::Modules::External::Message.new(:run)</span><br><span class="line">      m.params = datastore.dup</span><br><span class="line">      send(m)</span><br><span class="line">      self.running = true</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">	</span><br><span class="line">  # 获取当前状态和恢复run状态  </span><br><span class="line">  def get_status</span><br><span class="line">    if self.running || !self.messages.empty?</span><br><span class="line">      m = receive_notification</span><br><span class="line">      if m.nil?</span><br><span class="line">        close_ios</span><br><span class="line">        self.messages.close</span><br><span class="line">        self.running = false</span><br><span class="line">      end</span><br><span class="line"></span><br><span class="line">      return m</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  # 接收</span><br><span class="line">  def recv(filter_id=nil, timeout=600)</span><br><span class="line">    _, out, err = self.ios</span><br><span class="line">    message = &apos;&apos;</span><br><span class="line">  </span><br><span class="line">  # jsonrpc发送和接受</span><br><span class="line">  def send_receive(message)</span><br><span class="line">    send(message)</span><br><span class="line">    recv(message.id)</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  # 发送模块元数据</span><br><span class="line">  def describe</span><br><span class="line">    resp = send_receive(Msf::Modules::External::Message.new(:describe))</span><br><span class="line">    close_ios</span><br><span class="line">    resp.params</span><br><span class="line">  end</span><br><span class="line">  	</span><br><span class="line">  # 发送  </span><br><span class="line">  def send(message)</span><br><span class="line">    input, output, err, status = ::Open3.popen3(self.env, self.cmd)</span><br><span class="line">    self.ios = [input, output, err]</span><br><span class="line">    self.wait_thread = status</span><br><span class="line">    case select(nil, [input], nil, 0.1)</span><br><span class="line">    when nil</span><br><span class="line">      raise &quot;Cannot run module #&#123;self.path&#125;&quot;</span><br><span class="line">    when [[], [input], []]</span><br><span class="line">      m = message.to_json</span><br><span class="line">      write_message(input, m)</span><br><span class="line">    else</span><br><span class="line">      raise &quot;Error running module #&#123;self.path&#125;&quot;</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  # TODO 这里原本有一大段关于网络接受的代码 </span><br><span class="line"></span><br><span class="line"># 每个编程语言扩展的具体实现</span><br><span class="line">class Msf::Modules::External::PyBridge &lt; Msf::Modules::External::Bridge</span><br><span class="line"> # 判断是否是py文件</span><br><span class="line">  def self.applies?(module_name)</span><br><span class="line">    module_name.match? /\.py$/</span><br><span class="line">  end</span><br><span class="line"> </span><br><span class="line">  # 初始化 python扩展添加了额外的路径</span><br><span class="line">  def initialize(module_path)</span><br><span class="line">    super</span><br><span class="line">    pythonpath = ENV[&apos;PYTHONPATH&apos;] || &apos;&apos;</span><br><span class="line">    self.env = self.env.merge(&#123; &apos;PYTHONPATH&apos; =&gt; pythonpath + File::PATH_SEPARATOR + File.expand_path(&apos;../python&apos;, __FILE__) &#125;)</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Msf::Modules::External::Bridge</span><br><span class="line">  # 载入列表 我们可以期待更多的语言可以编写msf模块 如Msf::Modules::External::JsBridge?</span><br><span class="line">  LOADERS = [</span><br><span class="line">    Msf::Modules::External::PyBridge,</span><br><span class="line">    Msf::Modules::External::Bridge</span><br><span class="line">  ]</span><br><span class="line">	</span><br><span class="line">  # 运行模块方法 让载入的bridge都判断是否是自己所属的 </span><br><span class="line">  def self.open(module_path)</span><br><span class="line">    LOADERS.each do |klass|</span><br><span class="line">      return klass.new module_path if klass.applies? module_path</span><br><span class="line">    end</span><br><span class="line">    nil</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>这里是省略了不重要的细节的<code>shim.rb</code>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">require &apos;msf/core/modules/external/bridge&apos;</span><br><span class="line"></span><br><span class="line">class Msf::Modules::External::Shim</span><br><span class="line">  # 将bridge返回的数据生成一个模块</span><br><span class="line">  def self.generate(module_path)</span><br><span class="line">    mod = Msf::Modules::External::Bridge.open(module_path)</span><br><span class="line">    return &apos;&apos; unless mod.meta</span><br><span class="line">    # 这里根据模块元数据来选择模板 目前只有3个 元数据获取查看bridge.rb的meta方法 </span><br><span class="line">    case mod.meta[&apos;type&apos;]</span><br><span class="line">    when &apos;remote_exploit_cmd_stager&apos;</span><br><span class="line">      remote_exploit_cmd_stager(mod)</span><br><span class="line">    when &apos;capture_server&apos;</span><br><span class="line">      capture_server(mod)</span><br><span class="line">    when &apos;dos&apos;</span><br><span class="line">      dos(mod)</span><br><span class="line">    when &apos;scanner.multi&apos;</span><br><span class="line">      multi_scanner(mod)</span><br><span class="line">    else</span><br><span class="line">      # TODO have a nice load error show up in the logs</span><br><span class="line">      &apos;&apos;</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  # 返回一个模块 erb是ruby的一个代码模板库</span><br><span class="line">  def self.render_template(name, meta = &#123;&#125;)</span><br><span class="line">    template = File.join(File.dirname(__FILE__), &apos;templates&apos;, name)</span><br><span class="line">    ERB.new(File.read(template)).result(binding)</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def self.common_metadata(meta = &#123;&#125;)</span><br><span class="line">    render_template(&apos;common_metadata.erb&apos;, meta)</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">  # 数据转换</span><br><span class="line">  def self.mod_meta_common(mod, meta = &#123;&#125;)</span><br><span class="line">    meta[:path]        = mod.path.dump</span><br><span class="line">    meta[:name]        = mod.meta[&apos;name&apos;].dump</span><br><span class="line">    meta[:description] = mod.meta[&apos;description&apos;].dump</span><br><span class="line">    meta[:authors]     = mod.meta[&apos;authors&apos;].map(&amp;:dump).join(&quot;,\n          &quot;)</span><br><span class="line"></span><br><span class="line">    meta[:options]     = mod.meta[&apos;options&apos;].map do |n, o|</span><br><span class="line">      &quot;Opt#&#123;o[&apos;type&apos;].camelize&#125;.new(#&#123;n.dump&#125;,</span><br><span class="line">        [#&#123;o[&apos;required&apos;]&#125;, #&#123;o[&apos;description&apos;].dump&#125;, #&#123;o[&apos;default&apos;].inspect&#125;])&quot;</span><br><span class="line">    end.join(&quot;,\n          &quot;)</span><br><span class="line">    meta</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line"> # 渲染膜拜</span><br><span class="line">  def self.dos(mod)</span><br><span class="line">    meta = mod_meta_common(mod)</span><br><span class="line">    meta[:date] = mod.meta[&apos;date&apos;].dump</span><br><span class="line">    meta[:references] = mod.meta[&apos;references&apos;].map do |r|</span><br><span class="line">      &quot;[#&#123;r[&apos;type&apos;].upcase.dump&#125;, #&#123;r[&apos;ref&apos;].dump&#125;]&quot;</span><br><span class="line">    end.join(&quot;,\n          &quot;)</span><br><span class="line">    render_template(&apos;dos.erb&apos;, meta)</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>所以python模块的运行过程其实是这样的</p>
+<ol>
+<li>class Msf::Modules::External::Shim获取到了模块路径</li>
+<li>调用Msf::Modules::External::Bridge.open</li>
+<li>在open方法 Msf::Modules::External::PyBridge::applies判断成功(也就是确认了是python模块)</li>
+<li>初始化一个Msf::Modules::External::PyBridge并返回</li>
+<li>判断元数据类型 假设是dos 则调用dos方法</li>
+<li>调用mod_meta_common方法转换元数据 渲染代码模板</li>
+</ol>
+<p>我们可以查看<code>dos.erb</code>的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">require &apos;msf/core/modules/external/bridge&apos;</span><br><span class="line">require &apos;msf/core/module/external&apos;</span><br><span class="line"></span><br><span class="line">class MetasploitModule &lt; Msf::Auxiliary</span><br><span class="line">  include Msf::Module::External</span><br><span class="line">  include Msf::Auxiliary::Dos</span><br><span class="line"></span><br><span class="line">  def initialize</span><br><span class="line">    super(&#123;</span><br><span class="line">	  &lt;%= common_metadata meta %&gt;</span><br><span class="line">      &apos;References&apos;  =&gt;</span><br><span class="line">        [</span><br><span class="line">          &lt;%= meta[:references] %&gt;</span><br><span class="line">        ],</span><br><span class="line">      &apos;DisclosureDate&apos; =&gt; &lt;%= meta[:date] %&gt;,</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">      register_options([</span><br><span class="line">        &lt;%= meta[:options] %&gt;</span><br><span class="line">      ])</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def run</span><br><span class="line">    print_status(&quot;Starting server...&quot;)</span><br><span class="line">    mod = Msf::Modules::External::Bridge.open(&lt;%= meta[:path] %&gt;)</span><br><span class="line">    mod.run(datastore)</span><br><span class="line">    wait_status(mod)</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>所以事实上python模块的实现就是将python代码中元数据传递到代码模板 然后实际上调用的还是ruby模板 我们的python文件路径将会出现在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mod = Msf::Modules::External::Bridge.open(&lt;%= meta[:path] %&gt;)</span><br><span class="line">mod.run(datastore)</span><br></pre></td></tr></table></figure></p>
+<p>最后通过<code>bridge.run</code>调用.这种扩展方法不但没有失去对ruby模块的强大支持也没丢失python的灵活性 非常好</p>
+
+    </div>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            bluebird
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/02/metasploit-python-模块/">metasploit python 模块</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/28/metinfo3-5-19后台getshell分析/">metinfo3.5.19后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/25/metinfoexp/">metinfo3.5.18后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/31/一道简单题目/">一道简单题目</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/网络安全/" style="font-size: 16.087943253627117px;" class="tag-cloud-link">网络安全</a>
+    
+    <a href="/tags/web安全/" style="font-size: 16.30937410213915px;" class="tag-cloud-link">web安全</a>
+    
+    <a href="/tags/编程技术/" style="font-size: 14.636006037531232px;" class="tag-cloud-link">编程技术</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 17.4656761034117px;" class="tag-cloud-link">web安全    漏洞分析</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 15.138882660299334px;" class="tag-cloud-link">web安全     漏洞分析</a>
+    
+    <a href="/tags/编程开发/" style="font-size: 18.16551629230205px;" class="tag-cloud-link">编程开发</a>
+    
+    <a href="/tags/漫谈/" style="font-size: 18.682619123844354px;" class="tag-cloud-link">漫谈</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 bluebird Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+
+</html>

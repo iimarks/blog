@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="bluebird">
+    
+    
+    
+    
+    
+    
+    <title>如何使用工具快速进行fuzz | 青鸟 Blog</title>
+    <link href=”http://blue-bird1.github.io“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="http://blue-bird1.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://blue-bird1.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">青鸟 Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/网络安全/">网络安全</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/网络安全/">网络安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/web安全/">web安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/编程技术/">编程技术</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://blue-bird1.github.io">青鸟 Blog</a>
+        >
+        <span>如何使用工具快速进行fuzz</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-09-20
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-09-20
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>fuzz工具非常多 如<code>libfuzz</code> <code>honggfuzz</code> <code>KernelFuzzer</code> 也有专注进行web fuzz的<code>wfuzz</code> 但是fuzz功能可以分成两种 只是生成测试用例和检测程序使用测试用例后异常  这次使用radamsa和afl作为这两类工具</p>
+<h2 id="radamsa"><a href="#radamsa" class="headerlink" title="radamsa"></a>radamsa</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>官方给出的命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment"># please please please fuzz your programs. here is one way to get data for it:</span></span><br><span class="line">$ sudo apt-get install gcc make git wget</span><br><span class="line">$ git <span class="built_in">clone</span> https://gitlab.com/akihe/radamsa.git &amp;&amp; <span class="built_in">cd</span> radamsa &amp;&amp; make &amp;&amp; sudo make install</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">"HAL 9000"</span> | radamsa</span><br></pre></td></tr></table></figure></p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"aaa"</span> | radamsa</span><br><span class="line">aaaa</span><br></pre></td></tr></table></figure>
+<p><code>echo &quot;aaa&quot;</code>可换成任意输出内容的命令 如<code>cat test.txt</code></p>
+<p>常用选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-o / --output 指定输出方法</span><br><span class="line">-o -    输出到终端</span><br><span class="line">-o output.txt 输出到文件</span><br><span class="line">-o :80 网络请求 适用于对服务器程序fuzz</span><br><span class="line"></span><br><span class="line">--seek num 指定随机数 用来方便复现</span><br><span class="line"></span><br><span class="line">-g | --generators  指定输入</span><br><span class="line">-g stdio 默认从命令行输出获取</span><br><span class="line">-g file filename 读文件</span><br><span class="line">-g random 随机数据</span><br><span class="line"></span><br><span class="line">-n 生成数量</span><br></pre></td></tr></table></figure></p>
+<h3 id="fuzz-命令行程序"><a href="#fuzz-命令行程序" class="headerlink" title="fuzz 命令行程序"></a>fuzz 命令行程序</h3><h4 id="从命令行读取数据"><a href="#从命令行读取数据" class="headerlink" title="从命令行读取数据"></a>从命令行读取数据</h4><p>典型就是<code>md5sum</code><br>测试fuzz命令例子<br><code>echo &quot;test&quot; | radamsa | md5sum  -</code></p>
+<p>当然不可能fuzz一次就执行一行命令 编写一个简单的脚本<br>shell or python? python!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import os                                                                                                                                                                      </span><br><span class="line">while True:                                              </span><br><span class="line">   ret = os.system(&apos;echo &quot;test&quot; | radamsa | md5sum -&apos;)</span><br></pre></td></tr></table></figure>
+<p>只是简单的单线程执行 但是存在两个问题 如何记录崩溃和崩溃输入 这个时候<code>-seek</code>就能使用了 同时通过判断<code>system</code>函数的返回值 修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import os                                                                                                                               num = 0                                       </span><br><span class="line">while True:                                              </span><br><span class="line">   ret = os.system(&apos;echo &quot;test&quot; | radamsa -seek &#123;&#125;| md5sum -&apos;.format(num))</span><br><span class="line">   num = num +1</span><br><span class="line">   if ret != 0:</span><br><span class="line">      with open（&quot;crash.txt&quot;,&quot;w+&quot;） as f</span><br><span class="line">      f.write(&quot;&#123;&#125;\n&quot;.format(num))</span><br></pre></td></tr></table></figure>
+<p>我们的第一个fuzz程序(虽然这个脚本很简陋)</p>
+<h3 id="文件fuzz"><a href="#文件fuzz" class="headerlink" title="文件fuzz"></a>文件fuzz</h3><p>和命令行主要区别只是读取方式和 文件格式一般会有一定要求 否则不能进入程序执行流程.所以一般fuzz严格的文件格式要使用专门的生成框架.</p>
+<p>生成fuzz文件方法很简单<br><code>echo &quot;test&quot; | radamsa --output &#39;testfile&#39;</code></p>
+<p>读取文件生成<br><code>radamsa --output &#39;testfile&#39;  -g file testfile</code></p>
+<h3 id="网络fuzz"><a href="#网络fuzz" class="headerlink" title="网络fuzz"></a>网络fuzz</h3><p>虽然<code>radmasa</code>提供了这个选项 由于协议格式基本都是一个错误字节就报错 所以推荐使用<code>Mutiny</code>来进行网络fuzz<br><code>echo &quot;test&quot; | radamsa --output &#39;:80&#39;</code></p>
+<h2 id="afl"><a href="#afl" class="headerlink" title="afl"></a>afl</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>这款工具除了可以自动从输入fuzz 还能自动检测崩溃 超时. 最大亮点是使用了 编译器插桩 在运行时通过编译时插入的代码可以了解到代码运行路径 覆盖率等信息</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz</span><br><span class="line">tar -xf afl-latest.tgz</span><br><span class="line">cd afl*</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>常用参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alf-fuzz programs</span><br><span class="line">-i 样本目录 fuzz时会使用这些样本生成fuzz文件</span><br><span class="line">-o 输出目录 生成fuzz文件存放目录</span><br><span class="line">-n 普通fuzz模式 只有检测崩溃功能 不能检测路径覆盖率</span><br><span class="line">-q qmeu模式</span><br></pre></td></tr></table></figure></p>
+<p>例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz  -i test/markdup/ -o out -n md5sum -</span><br></pre></td></tr></table></figure></p>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><p>从github选一个作为实际对象 我使用高级搜索 指定&gt;500star c语言的项目后随意找了一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/samtools/samtools</span><br></pre></td></tr></table></figure></p>
+<p>实际选择指南</p>
+<ol>
+<li>star星数是很好的指标 代表发现的漏洞的影响力</li>
+<li>选择 c/c++</li>
+<li>优先选择可以直接编译成程序的 fuzz库还需要去学习怎么写成库入口程序进行fuzz</li>
+<li>优先选择有完善的测试用例的 如jpg xml 或者自带</li>
+<li>代码越多漏洞越多</li>
+<li>如果是本地命令行程序或难以利用的程序 做好发现漏洞被忽略的准备</li>
+</ol>
+<p>需要使用afl-gcc执行了编译  常用将gcc替换成afl-gcc的方法 (如果不经常进行编译)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CC=你的afl路径/afl-gcc</span><br><span class="line">export CC</span><br></pre></td></tr></table></figure></p>
+<p>然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>实际使用编译工具不同 可能需要查询文档 当然你只fuzz不做其他编译直接<code>mv afl-gcc gcc</code>也行</p>
+<p>编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install autoconf automake make gcc perl zlib1g-dev libbz2-dev liblzma-dev libcurl4-gnutls-dev libssl-dev libncurses5-dev</span><br><span class="line">git clone https://github.com/samtools/htslib                                          </span><br><span class="line">git clone https://github.com/samtools/bcftools</span><br><span class="line">cd samtools</span><br><span class="line">autoheader</span><br><span class="line">autoconf -Wno-syntax</span><br><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
+<p>确认输出中的 <code>checking for gcc... xxxx</code> 是你的afl-fuzz 如果不是请执行上面的替换方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>这个程序提供了测试用例在<code>test</code>目录 如果fuzz其他程序没有提供 就需要自己寻找<br>需要注意几点</p>
+<ol>
+<li>尽量覆盖全部可能的格式</li>
+<li>畸形并符合文件格式</li>
+<li>不要存在大量无用数据 像一个3000像素大小的红色正方形图片比一个30像素的 在fuzz时并没有功能提升 只会让fuzz程序大量修改到没有用的图片数据区  </li>
+</ol>
+<p>这个<code>samtools</code> 有多个功能 我们测试split这个功能 (q:为什么 a:因为我只在这个找到了崩溃 你想试试其他功能和用例也可以)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i test/markdup/ -o out samtools split @@</span><br></pre></td></tr></table></figure></p>
+<p>稍等一会 就可以看到产生了崩溃<br><img src="https://i.loli.net/2018/09/23/5ba6a9cb52673.png" alt=""></p>
+<p>停止后 文件保存位置 <code>你选择的输出目录这次是out/crashes/</code></p>
+<p>测试崩溃<br><code>./samtools split out/crashes/id:000000,sig:11,src:000015,op:flip2,pos:2</code><br>应用崩溃了<br><code>fish: “./samtools split out/crashes/id…” terminated by signal SIGSEGV (Address boundary error)</code></p>
+<h2 id="之后"><a href="#之后" class="headerlink" title="之后?"></a>之后?</h2><p>可以选择构造exp当自己的0day 或者提交给开发者 我是倾向于提交给开发者的 而且构造exp已经有很多书籍</p>
+<h3 id="提交是什么"><a href="#提交是什么" class="headerlink" title="提交是什么"></a>提交是什么</h3><p>通知开发者程序存在问题 让开发者进行修复。</p>
+<h3 id="怎么提交"><a href="#怎么提交" class="headerlink" title="怎么提交?"></a>怎么提交?</h3><p>根据程序开发者的不同 具体可能是(非全面)</p>
+<ol>
+<li>小型商业公司 无漏洞奖金计划  我们可以从网上找到它的联系邮件 邮件通知</li>
+<li>大型商业公司 有漏洞奖金计划 使用计划中的提交方式</li>
+<li>开发者 非开源  邮件通知</li>
+<li>开发者 托管在github等 如果问题不大可以直接使用issue 如果是远程利用之类请通知开发者</li>
+</ol>
+<p>一般都需要提供以下信息</p>
+<ol>
+<li>os信息</li>
+<li>程序版本信息</li>
+<li>崩溃样本</li>
+<li>其他信息</li>
+</ol>
+<h3 id="为什么要提交"><a href="#为什么要提交" class="headerlink" title="为什么要提交?"></a>为什么要提交?</h3><p>修复漏洞 防止用户收到攻击 为网络安全做贡献 当然也有其他现实因素 比如危害太小不提交也没用 简历加分等等</p>
+
+    </div>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            bluebird
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/22/findbug/">寻找历史漏洞</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/02/metasploit-python-模块/">metasploit python 模块</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/25/metinfoexp/">metinfo3.5.18后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/31/一道简单题目/">一道简单题目</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2018/09/20/fuzz/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2018/09/20/fuzz/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2018/09/20/fuzz/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/网络安全/" style="font-size: 8.491314600822895px;" class="tag-cloud-link">网络安全</a>
+    
+    <a href="/tags/web安全/" style="font-size: 17.194779791777748px;" class="tag-cloud-link">web安全</a>
+    
+    <a href="/tags/编程技术/" style="font-size: 9.894818389116054px;" class="tag-cloud-link">编程技术</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 14.40269709966634px;" class="tag-cloud-link">web安全    漏洞分析</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 17.55633102164023px;" class="tag-cloud-link">web安全     漏洞分析</a>
+    
+    <a href="/tags/编程开发/" style="font-size: 16.25438716388029px;" class="tag-cloud-link">编程开发</a>
+    
+    <a href="/tags/漫谈/" style="font-size: 12.037673651417283px;" class="tag-cloud-link">漫谈</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 bluebird Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="bluebird">
+    
+    
+    
+    
+    
+    
+    <title>缓存漫谈 | 青鸟 Blog</title>
+    <link href=”http://blue-bird1.github.io“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="http://blue-bird1.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://blue-bird1.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">青鸟 Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/网络安全/">网络安全</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/网络安全/">网络安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/web安全/">web安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/编程技术/">编程技术</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://blue-bird1.github.io">青鸟 Blog</a>
+        >
+        <span>缓存漫谈</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/漫谈/">漫谈</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-10-06
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-10-06
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/漫谈/">漫谈</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>cache已经成为互联网不可或缺的一部分，日常也无时无刻的使用着。这篇博客试讨论一下cache.</p>
+<h3 id="定义是什么"><a href="#定义是什么" class="headerlink" title="定义是什么"></a>定义是什么</h3><p>cache是什么，和储存有什么区别？ 首先cache最大的特点就是易失性，也是唯一物理本质上的区别。</p>
+<blockquote>
+<p>Cache一词来源于1967年的一篇电子工程期刊论文。其作者将法语词“cache”赋予“safekeeping storage”的涵义，用于计算机工程领域。 维基百科<br>凡是位于速度相差较大的两种硬件之间，用于协调两者数据传输速度差异的结构，均可称之为Cache。</p>
+</blockquote>
+<h3 id="用途是什么"><a href="#用途是什么" class="headerlink" title="用途是什么"></a>用途是什么</h3><p>几乎我们使用的每样东西都使用了缓存  cpu，硬盘，os，服务器。既然都是储存 使用cache的目的是只有调节速度差异(<code>提高速度</code>)么。<br>试观察缓存起到的作用.以动态网站的缓存为例.我们无缓存需要经过一个完整流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器程序处理请求-&gt;网站程序接受请求-&gt;程序操作-&gt;数据库处理-&gt;返回页面</span><br></pre></td></tr></table></figure>
+<p>如果进行缓存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器程序处理请求-&gt;网站程序接受请求-&gt;减少部分的程序操作-&gt;返回页面</span><br></pre></td></tr></table></figure></p>
+<p>如果无缓存 需要经过额外的程序 提高了程序消耗 增加了n次数据库处理 <code>节省消耗</code></p>
+<p>再试考虑如果数据库故障了 缓存可用  <code>提高可用性</code></p>
+<ol>
+<li>提高速度</li>
+<li>节省消耗</li>
+<li>提高可用性</li>
+</ol>
+<h3 id="常用缓存有什么-如何评价一个缓存效果"><a href="#常用缓存有什么-如何评价一个缓存效果" class="headerlink" title="常用缓存有什么?如何评价一个缓存效果?"></a>常用缓存有什么?如何评价一个缓存效果?</h3><p>在建模时缓存常常被分为一个层，该如何评价一个缓存层效果呢</p>
+<blockquote>
+<p>以下以web应用缓存为例 其他缓存应该也可以应用  分布式 容灾等暂不纳入讨论范围</p>
+</blockquote>
+<p>最常见的评价指标应该是缓存命中率了<br><code>缓存命中率 = 缓存命中数/请求数</code><br>然而这个指标很明显是依赖于开发者实现 只能在具体应用测量 无法估计. 但是我们可以考虑它的关系 时间空间矛盾性 缓存占用空间与命中率成正比</p>
+<p>考虑性能指标 从用途分别评价 读者应该也能列出类似以下的指标</p>
+<blockquote>
+<p>以下非严谨指标 仅供参考</p>
+</blockquote>
+<p>提高速度 <code>提速率 = 1 - 缓存命中消耗时间/未命中消耗时间</code><br>节省消耗 <code>节省消耗率 = 1 -缓存命中消耗资源/未命中消耗资源</code><br>提高可用性 <code>提高可用率 = 缓存覆盖率</code><br>可用性 <code>可用率 = 1-缓存丢失率</code>  不管存放在哪里 都有物理上故障的可能性</p>
+<p>当然这些只是简单指标 需要具体量化 如文件缓存需要多读一次文件 但节省了一次数据库请求 节省消耗率是多少</p>
+<p>以服务器为视角 常用缓存都可以从获取渠道分为内存,文件,网络 从上面的2个指标+单位成本估计 (提高可用性,节省消耗率基本一致)<br>
+<table>
+<thead>
+ <tr>
+ <th></th>
+   <th>内存  </th>
+   <th>文件 </th>
+   <th>网络</th>
+ </tr>
+</thead>
+<tbody>
+    <tr>
+      <td>提速率 </td>     
+      <td>高</td>
+      <td> 较高 </td>
+      <td>一般</td>
+    </tr>
+    <tr>
+      <td>单位成本</td>
+      <td>高</td>
+      <td>低 </td>
+      <td>视具体使用技术而定</td>
+    </tr>
+    <tr>
+      <td>可用率 </td>
+      <td>中</td>
+      <td>低 </td>
+      <td>视具体使用技术而定</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<h3 id="该使用什么缓存-怎么用"><a href="#该使用什么缓存-怎么用" class="headerlink" title="该使用什么缓存?怎么用?"></a>该使用什么缓存?怎么用?</h3><p>首先我们考虑能在什么地方使用缓存 上一个小节我们关注了web应用自身的缓存 但是缓存每个环节都可以使用 引用一张图</p>
+<blockquote>
+<p>来自美团技术团队 原文地址 <a href="https://tech.meituan.com/cache_about.html" target="_blank" rel="noopener">https://tech.meituan.com/cache_about.html</a><br><img src="https://tech.meituan.com/img/cache_about/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%80%E8%88%AC%E6%B5%81%E7%A8%8B.png" alt=""></p>
+</blockquote>
+<p>从浏览器开始<br>JavaScript ServiceWorker 是现在流行的前端技术</p>
+<blockquote>
+<p>Service workers 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API。</p>
+</blockquote>
+<p>通过这个技术可以让web开发人员轻松的控制缓存。 如果没有这个技术呢? 也可以通过<a href="http://www.alloyteam.com/2016/03/discussion-on-web-caching/" target="_blank" rel="noopener">cache-control</a>头进行缓存</p>
+<p>发起了真正的请求 静态文件应该都知道cdn<br>服务器接受到了请求  使用内存/文件/网络缓存 分别应该在什么时候使用? 单机情况下内存和文件只是成本和速度区别,网络缓存未必要使用.</p>
+<h4 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h4><p>根据位置 缓存也可以分为本地缓存/分布式缓存 网络缓存属于分布式缓存<br>如果是一个服务器集群 本地缓存会导致服务器无法共享 如一台服务器绝无可能去读另一台服务器的内存缓存 导致都要独立缓存造成大量浪费.同时存在一个缓存一致性的问题.<br>如果属于分布式缓存 服务器集群都可以共享一个缓存</p>
+<blockquote>
+<p>一个系统中的问题不能通过转移到另一个同等系统来解决 只能变成另一个问题</p>
+</blockquote>
+<p>由于单机缓存服务器不可能支持集群的访问 只能形成集群 然而集群又引入了上面的问题</p>
+<h3 id="缓存算法"><a href="#缓存算法" class="headerlink" title="缓存算法"></a>缓存算法</h3><p>如果要实现一个缓存系统 需要一些算法 缓存特点的主要有清空算法,预测算法.清空算法并没有明显优劣 本质上只是清空认为最无用的缓存 在不同场景需要选择不同清空算法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 来自https://tech.meituan.com/cache_about.html的列表</span><br><span class="line">常见的一般策略有：</span><br><span class="line"></span><br><span class="line">FIFO(first in first out)</span><br><span class="line"></span><br><span class="line">先进先出策略，最先进入缓存的数据在缓存空间不够的情况下（超出最大元素限制）会被优先被清除掉，以腾出新的空间接受新的数据。策略算法主要比较缓存元素的创建时间。在数据实效性要求场景下可选择该类策略，优先保障最新数据可用。</span><br><span class="line"></span><br><span class="line">LFU(less frequently used)</span><br><span class="line"></span><br><span class="line">最少使用策略，无论是否过期，根据元素的被使用次数判断，清除使用次数较少的元素释放空间。策略算法主要比较元素的hitCount（命中次数）。在保证高频数据有效性场景下，可选择这类策略。</span><br><span class="line"></span><br><span class="line">LRU(least recently used)</span><br><span class="line"></span><br><span class="line">最近最少使用策略，无论是否过期，根据元素最后一次被使用的时间戳，清除最远使用时间戳的元素释放空间。策略算法主要比较元素最近一次被get使用时间。在热点数据场景下较适用，优先保证热点数据的有效性。</span><br><span class="line"></span><br><span class="line">除此之外，还有一些简单策略比如：</span><br><span class="line"></span><br><span class="line">根据过期时间判断，清理过期时间最长的元素；</span><br><span class="line">根据过期时间判断，清理最近要过期的元素；</span><br><span class="line">随机清理；</span><br><span class="line">根据关键字（或元素内容）长短清理等。</span><br></pre></td></tr></table></figure></p>
+<p>cpu预测分支技术已经非常成熟 但是web缓存预测并没有生产使用 还是停留在论文上 主要存在什么问题? 首先就是没有足够泛用和正确率的算法 从论文上可以看出 近年主要用的都是ai技术 虽然现在ai吹的很飘 但是在这个问题上并没有得出很好的解决方案. 同时需求并没有那么大 需要缓存预测技术的只是数据量极大的网站 如推特</p>
+<h3 id="缓存安全问题"><a href="#缓存安全问题" class="headerlink" title="缓存安全问题"></a>缓存安全问题</h3><p>作为一名安全爱好者 谈谈安全问题.而且通过安全问题 也能显示缓存一些本质问题.</p>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>简单来说 就是缓存未命中 直接命中服务器 大量这种请求可能造成服务器不可用. 但是从这个定义来看充其量只是回到没有缓存 并不是安全问题 有什么危害?<br>缓存本质也是储存 需要储存消耗 如果新缓存命中率极低可以认为该请求消耗资源为 原请求资源+储存缓存资源 而且新缓存挤压其他缓存可能造成原会命中的缓存被清空</p>
+<h4 id="web缓存投毒"><a href="#web缓存投毒" class="headerlink" title="web缓存投毒"></a>web缓存投毒</h4><p>缓存实现为键值结构 意味着什么呢? 如果键一样就会返回一样的内容,如果以外的东西也有影响呢? 考虑我们使用路径作为键<br>也就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /test</span><br></pre></td></tr></table></figure></p>
+<p>键为<code>/test</code> 然而http头还有其他字段 如果取cookies显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo $COOKIES[&quot;test&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>会导致self-xss漏洞 原本没什么危害 但是缓存会导致其他用户也访问到这个页面  </p>
+<h4 id="缓存写问题"><a href="#缓存写问题" class="headerlink" title="缓存写问题"></a>缓存写问题</h4><p>这个问题只存在与文件缓存 首先web缓存会缓存页面 页面内容是可信的么? 如果缓存一些用户内容 可能导致任意写文件内容.<br>在php这种动态脚本语言 只要有.php文件就会运行 如果.php缓存文件在web服务器 名字可被猜测 就相当于任意在你服务器运行php代码.</p>
+
+    </div>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            bluebird
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/22/findbug/">寻找历史漏洞</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/02/metasploit-python-模块/">metasploit python 模块</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/28/metinfo3-5-19后台getshell分析/">metinfo3.5.19后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/25/metinfoexp/">metinfo3.5.18后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/31/一道简单题目/">一道简单题目</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2018/10/06/缓存漫谈/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2018/10/06/缓存漫谈/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2018/10/06/缓存漫谈/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/网络安全/" style="font-size: 18.745608466570893px;" class="tag-cloud-link">网络安全</a>
+    
+    <a href="/tags/web安全/" style="font-size: 19.750110071514978px;" class="tag-cloud-link">web安全</a>
+    
+    <a href="/tags/编程技术/" style="font-size: 14.477052299441814px;" class="tag-cloud-link">编程技术</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 19.932483523922908px;" class="tag-cloud-link">web安全    漏洞分析</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 12.615907273835067px;" class="tag-cloud-link">web安全     漏洞分析</a>
+    
+    <a href="/tags/编程开发/" style="font-size: 8.838233165752158px;" class="tag-cloud-link">编程开发</a>
+    
+    <a href="/tags/漫谈/" style="font-size: 16.21239186845899px;" class="tag-cloud-link">漫谈</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 bluebird Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+
+</html>

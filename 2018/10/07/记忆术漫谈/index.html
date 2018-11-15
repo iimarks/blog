@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="bluebird">
+    
+    
+    
+    
+    
+    
+    <title>记忆术漫谈 | 青鸟 Blog</title>
+    <link href=”http://blue-bird1.github.io“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="http://blue-bird1.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://blue-bird1.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">青鸟 Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/网络安全/">网络安全</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/网络安全/">网络安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/web安全/">web安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/编程技术/">编程技术</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://blue-bird1.github.io">青鸟 Blog</a>
+        >
+        <span>记忆术漫谈</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/漫谈/">漫谈</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-10-07
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-10-07
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/漫谈/">漫谈</a>
+                
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <p>记忆术是畅销书元素之一，像<code>如何高效记忆 : 美国更权威、流传更广的记忆教程，畅销40年，博客来百大学习新知类年</code>,<code>超右脑照相记忆法 : 快速唤醒右脑照相记忆功能</code>之流 仿佛看了买了这本书阅读 明天就能过目不忘。当然这些贩卖焦虑之类的议题和本文无关。本文探讨一下记忆术和记忆术的本质。</p>
+<h3 id="记忆术"><a href="#记忆术" class="headerlink" title="记忆术"></a>记忆术</h3><p>记忆术是一种帮助记忆的技巧 如</p>
+<ul>
+<li>化学口诀</li>
+<li>英语缩写</li>
+<li>联想</li>
+</ul>
+<p>然而书中是 <code>独创的“记忆系统“</code> <code>独创的&quot;xx方法&quot;</code> 显然只是一些把本质掩盖的包装  本文讨论将只是本质</p>
+<p>考虑记忆术的本质 自然不能脱离记忆</p>
+<blockquote>
+<p>记忆(Memory)是神经系统存储过往经验的能力</p>
+</blockquote>
+<p>广为接受的模型将记忆过程分为三个不同阶段：</p>
+<ol>
+<li>编码：获得资讯并加以处理和组合。</li>
+<li>储存：将组合整理过的资讯做永久纪录</li>
+<li>检索：将被储存的资讯取出，回应一些暗示和事件</li>
+</ol>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>作为理科生(误) 说到编码自然想到信息论.事实上众多记忆术只是对信息论的一种包装.</p>
+<p>以记忆单词为例 (下文均为如此)</p>
+<blockquote>
+<p>简单化模型 下文会详细论述英语记忆</p>
+</blockquote>
+<p>考虑两个虚构的单词</p>
+<ul>
+<li>singer</li>
+<li>teacher</li>
+</ul>
+<p>如果单个字母记忆 一共有13个字母 假设一个字母信息为1(使用真正的信息熵计算可能会过于繁琐) 需要记忆的信息为13<br>但是我们知道<code>er</code>是一个后缀 所以如果将<code>er</code>作为一个特殊字母单独记忆 记忆消耗为2 信息一共是11</p>
+<p>以上只是一个简单的例子 但是应该可以看出记忆术的本质有<code>压缩信息量</code> 在此不对压缩信息技巧展开探讨 有兴趣的请参考相关资料</p>
+<h3 id="储存"><a href="#储存" class="headerlink" title="储存"></a>储存</h3><p>记忆术在储存上有例如<code>联想记忆术</code> <code>形象记忆法</code>.在直接看到本质定义后 考虑一个储存可能有什么属性与记忆相关<br>以下是作者列出的 欢迎补充</p>
+<ol>
+<li>结构</li>
+<li>大小</li>
+<li>实际容量</li>
+</ol>
+<p>所以记忆术本质上只是对储存属性的定义.<br>考虑一个例子  图像记忆法<br>图像并不是很好的记忆结构 但是他的大小是整个图片 实际容量没有提高</p>
+<p>所以这类记忆法本质上只是提高了信息量 丢失会更加困难</p>
+<p>考虑第二个例子 联想记忆术<br>只是人为添加了记忆的相互结构</p>
+<p>考虑第三个例子 口诀<br>口诀<code>算碳找拐点，求氢四里减</code>不但压缩了信息量 也在一句话中增加了更多信息</p>
+<h3 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h3><p>检索依赖于储存时的结构 记忆术并没有太大作为</p>
+<h3 id="英语记忆"><a href="#英语记忆" class="headerlink" title="英语记忆"></a>英语记忆</h3><p>英语是由字母组成的 但是从语言学角度来讲 字母并不是真正的有意义构成部分 真正语言单位是<code>语素</code> 语言是由<code>语素</code> <code>单词</code> <code>语法</code>构成的</p>
+<blockquote>
+<p>unbreakable这个字有三个语素：un-（不自由语素）、break（自由语素）、-able（不自由语素） 维基百科</p>
+</blockquote>
+<p>英语的非自由语素从记忆角度又可以大致分为<code>前缀</code>,<code>后缀</code>,<code>词根</code> 如果单词可记忆的语素更多 每个单词的平均信息量就会更少 这个已经是老调重弹,有关词根 前缀 后缀的书已经浩如烟海了</p>
+<p>考虑一个单词的记忆由什么组成.</p>
+<ul>
+<li>读 记忆一个单词对应的中文</li>
+<li>写 记忆一个中文对应的英文</li>
+</ul>
+<p>都是一个对应 显然作为母语的中文记忆会更简单 也就是为什么读比写容易<br>事实上作为IT人员 经常处于英语环境 在英语起步时会得到加成 因为在环境中会不自主的记忆下单词 但是不知道是什么意思 也就是说对应已经形成 只是没有填充对应的含义 而填充是非常简单的</p>
+<p>单纯背诵的效果是不令人满意的 因为并没有在储存时形成结构 也没有更多信息量.</p>
+<p>我们记忆的主结构是所处现实,检索任何东西也都是从所处现实开始的 比如说作者现在使用githubpage 提到git 作者从记忆中检索到的肯定是git这个工具 而不是它的英语含义<code>混账</code></p>
+<p>英语环境学到英语快且不易遗忘 因为记忆储存是直接在所处现实 而像中文环境背诵学英语需要额外构建一个英语记忆结构.一个结论就是基于这个的</p>
+<blockquote>
+<p>在生活学英语</p>
+</blockquote>
+<p>虽然我们生活并没有英语 但是可以像记忆术一样刻意构造你的记忆结构 强行挂载到你的现实记忆结构(作者注:这需要很大努力)</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>本文大致分析了大部分记忆术的本质 如果你看完本文也准备去写一本记忆术的书 只需要请作者喝杯咖啡(笑)</p>
+
+    </div>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            bluebird
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/28/metinfo3-5-19后台getshell分析/">metinfo3.5.19后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/31/一道简单题目/">一道简单题目</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2018/10/07/记忆术漫谈/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2018/10/07/记忆术漫谈/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2018/10/07/记忆术漫谈/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/网络安全/" style="font-size: 16.012564437150623px;" class="tag-cloud-link">网络安全</a>
+    
+    <a href="/tags/web安全/" style="font-size: 10.678747603841611px;" class="tag-cloud-link">web安全</a>
+    
+    <a href="/tags/编程技术/" style="font-size: 16.860273794858653px;" class="tag-cloud-link">编程技术</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 12.269618498203034px;" class="tag-cloud-link">web安全    漏洞分析</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 18.566147277475558px;" class="tag-cloud-link">web安全     漏洞分析</a>
+    
+    <a href="/tags/编程开发/" style="font-size: 18.759837230512396px;" class="tag-cloud-link">编程开发</a>
+    
+    <a href="/tags/漫谈/" style="font-size: 18.051794573953618px;" class="tag-cloud-link">漫谈</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 bluebird Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+
+</html>

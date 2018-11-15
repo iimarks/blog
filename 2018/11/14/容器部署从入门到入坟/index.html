@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="bluebird">
+    
+    
+    
+    
+    
+    
+    <title>容器部署从入门到入坟 | 青鸟 Blog</title>
+    <link href=”http://blue-bird1.github.io“ rel=”prefetch” />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/xsbg.gif');
+                background-attachment: fixed;
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/avatar.jpg'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+</head>
+<body>
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <div class="gal-menu gal-dropdown">
+    <div class="circle" id="gal">
+        <div class="ring">
+            <a href="http://blue-bird1.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            
+            <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
+            
+            <a href="/archives" class="menuItem" style="left: 80.3109%; top: 67.5%;">归档</a>
+            <a href="/about" class="menuItem" style="left: 50%; top: 85%;">关于</a>
+            <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
+            
+            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            
+        </div>
+        <audio id="audio" src="/imgs/oni.mp3"></audio>
+    </div>
+</div>
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target=".bs-navbar-collapse"
+                    aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="http://blue-bird1.github.io">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">青鸟 Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/网络安全/">网络安全</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/网络安全/">网络安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/web安全/">web安全</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/tags/编程技术/">编程技术</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/tags">...</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="mainstay">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://blue-bird1.github.io">青鸟 Blog</a>
+        >
+        <span>容器部署从入门到入坟</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-11-14
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-11-14
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h2 id="容器部署从入门到入坟"><a href="#容器部署从入门到入坟" class="headerlink" title="容器部署从入门到入坟"></a>容器部署从入门到入坟</h2><p>本文主要简单介绍容器部署技术,并列出最简单体验方式和相关链接</p>
+<h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><h5 id="官网-www-docker-com"><a href="#官网-www-docker-com" class="headerlink" title="官网 www.docker.com"></a>官网 <a href="http://www.docker.com" target="_blank" rel="noopener">www.docker.com</a></h5><p>Docker应该是最广为人知的. Docker是一个容器技术,通过将应用程序包装在容器 就可以轻松实现不同机器部署 而不需要额外安装的配置 . 而且因为主要使用linux的隔离技术,比虚拟机更轻量. 1G1核的vps上就能流畅运行.</p>
+<h4 id="适合人群"><a href="#适合人群" class="headerlink" title="适合人群"></a>适合人群</h4><p>希望节省自己安装和迁移时间的人.通过镜像就能轻松部署应用 而不需要学习如何安装</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget get.docker.io | bash</span><br></pre></td></tr></table></figure>
+<p>就会自动安装docker并启动</p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+<h5 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h5><p><a href="http://docs.docker.com" target="_blank" rel="noopener">http://docs.docker.com</a></p>
+<h5 id="部署上一些不足"><a href="#部署上一些不足" class="headerlink" title="部署上一些不足"></a>部署上一些不足</h5><p>多个应用程序的情况下可能需要启动多个容器,而docker程序并没有提供同时启动和管理多个容器的工具.像同时有数据库和服务器程序两个容器就需要分别停止和启动</p>
+<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h4><p>docker-compose是一款容器编排工具. 也就是同时定义和运行多个容器的应用程序.通过提供了一些有限的应用扩展功能. 但是需要额外提供一个<code>docker-compose.yml</code>文件来描述应用程序.性能上,并不需要额外的配置,只是单纯管理docker容器 .</p>
+<p>官网 <a href="http://www.docker.com" target="_blank" rel="noopener">www.docker.com</a></p>
+<h4 id="适合人群-1"><a href="#适合人群-1" class="headerlink" title="适合人群"></a>适合人群</h4><p>自己部署的docker上的应用程序 使用了多个容器</p>
+<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+<h5 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h5><p>首先定义一个<code>docker-compose.yml</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./docker-compose.yml</span></span><br><span class="line"></span><br><span class="line">version: <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: mysql:<span class="number">5.7</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: my_secret_pw_shh</span><br><span class="line">      MYSQL_DATABASE: test_db</span><br><span class="line">      MYSQL_USER: devuser</span><br><span class="line">      MYSQL_PASSWORD: devpass</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"9906:3306"</span></span><br><span class="line">  web:</span><br><span class="line">    image: php:<span class="number">7.2</span>.<span class="number">2</span>-apache</span><br><span class="line">    container_name: php_web</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    volumes:</span><br><span class="line">      - ./php/:/var/www/html/</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"8100:80"</span></span><br><span class="line">    stdin_open: true</span><br><span class="line">    tty: true</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+<h5 id="文档-1"><a href="#文档-1" class="headerlink" title="文档"></a>文档</h5><p><a href="https://docs.docker.com/compose/overview/" target="_blank" rel="noopener">https://docs.docker.com/compose/overview/</a></p>
+<h5 id="部署上的不足"><a href="#部署上的不足" class="headerlink" title="部署上的不足"></a>部署上的不足</h5><p>docker和docker-compose都是单机应用, 不提供跨主机部署和管理.</p>
+<h4 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h4><p>kubernetes是一个由Google创建的容器平台,提供部署,扩展和跨主机集群,自我修复等功能. 配置上 主节点编译Kubernetes需要2g内存以上 建议4g内存以上. 工作节点建议2g内存以上.生产环境上一般至少1个主节点和3个工作节点</p>
+<h5 id="官网-kubernetes-io"><a href="#官网-kubernetes-io" class="headerlink" title="官网  kubernetes.io"></a>官网  kubernetes.io</h5><h5 id="适合人群-2"><a href="#适合人群-2" class="headerlink" title="适合人群"></a>适合人群</h5><p>希望在集群上部署自己容器应用程序,并得到方便部署, 可扩展性,自动修复等功能的企业 </p>
+<h5 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get install -y apt-transport-https &amp;&amp; \</span><br><span class="line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -</span><br><span class="line">  </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://apt.kubernetes.io/ kubernetes-xenial main"</span> &gt; /etc/apt/sources.list.d/kubernetes.list</span><br><span class="line"></span><br><span class="line">apt-get update &amp;&amp; apt-get install -y kubelet kubeadm kubernetes-cni</span><br><span class="line">sudo kubeadm init --pod-network-cidr=10.244.0.0/16 </span><br><span class="line"><span class="comment"># 这行需要加入.bashrc</span></span><br><span class="line"><span class="built_in">export</span> KUBECONFIG=/etc/kubernetes/admin.conf</span><br><span class="line"></span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
+<h5 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f https://k8s.io/examples/pods/config/redis-pod.yaml</span><br><span class="line">kubectl get all --namespace=kube-system</span><br></pre></td></tr></table></figure>
+<h5 id="文档-2"><a href="#文档-2" class="headerlink" title="文档"></a>文档</h5><p><a href="https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/" target="_blank" rel="noopener">https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/</a></p>
+<h5 id="部署上一些不足-1"><a href="#部署上一些不足-1" class="headerlink" title="部署上一些不足"></a>部署上一些不足</h5><p>还是需要在每台服务器手动安装和更新</p>
+<h4 id="bosh"><a href="#bosh" class="headerlink" title="bosh"></a>bosh</h4><p><code>bosh</code>是一个云软件部署项目.可以在数百个vm上配置和部署软件.还提供了监控 故障恢复 更新软件等功能. <code>cfcr</code>是<code>bosh</code>的<code>kubernetes</code>部署项目.配置上, 如果<code>bosh</code>是<code>vbox</code>部署, 建议8g内存以上(仅bosh 和少量工作节点).在云平台上<code>bosh</code>部署需要2个vm, <code>cfcr</code>需要至少5个vm.默认配置vm上总cpu数&gt;10, 内存&gt;20g</p>
+<h3 id="适合人群-3"><a href="#适合人群-3" class="headerlink" title="适合人群"></a>适合人群</h3><p>使用云平台 并使用大规模集群的企业</p>
+<h5 id="gcp安装"><a href="#gcp安装" class="headerlink" title="gcp安装"></a>gcp安装</h5><p>其他云平台请参考<code>https://github.com/cloudfoundry/bosh-bootloader</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># install bosh cli</span><br><span class="line">wget https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64</span><br><span class="line">chmod +x bosh-cli-5.3.1-linux-amd64</span><br><span class="line">mv bosh-cli-5.3.1-linux-amd64 /usr/local/bin/bosh</span><br><span class="line"></span><br><span class="line"># install package</span><br><span class="line">apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3</span><br><span class="line"> </span><br><span class="line">git clone https://github.com/cloudfoundry/bosh-bootloader/tree/master/plan-patches/cfcr-gcp bosh &amp;&amp; cd bosh</span><br><span class="line"></span><br><span class="line">export BBL_IAAS=gcp</span><br><span class="line">export BBL_GCP_REGION=&lt;随便一个region&gt;</span><br><span class="line">export BBL_GCP_SERVICE_ACCOUNT_KEY=&lt;你的凭证json路径&gt;</span><br><span class="line"></span><br><span class="line">bbl up</span><br><span class="line"></span><br><span class="line"># https://github.com/cloudfoundry/bosh-bootloader/tree/master/plan-patches/cfcr-gcp</span><br><span class="line"># 例如 cfcr.bluebird.biz</span><br><span class="line">export kubernetes_master_host=your-domain-here</span><br><span class="line"></span><br><span class="line">mkdir banana-env &amp;&amp; cd banana-env</span><br><span class="line">bbl plan --name banana-env</span><br><span class="line">cp -r ../plan-patches/cfcr-gcp/. .</span><br><span class="line">echo kubernetes_master_host=\&quot;$&#123;kubernetes_master_host&#125;\&quot; &gt; vars/cfcr.tfvars</span><br><span class="line">bbl up</span><br><span class="line"># 以后每次使用bosh都需要在这个目录执行 建议写.bashrc</span><br><span class="line">eval &quot;$(bbl print-env)&quot;</span><br><span class="line"></span><br><span class="line">bosh upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent</span><br><span class="line"># url是cfcr的安装包 现在是最新的 以后需要自己更新</span><br><span class="line">bosh upload-release  https://github.com/cloudfoundry-incubator/kubo-release/releases/download/v0.24.0/kubo-release-0.24.0.tgz</span><br><span class="line"></span><br><span class="line">git clone git@github.com:cloudfoundry-incubator/kubo-deployment.git</span><br><span class="line">export KD=$(pwd)/kubo-deployment</span><br><span class="line">bosh deploy -d cfcr $&#123;KD&#125;/manifests/cfcr.yml \</span><br><span class="line">-o $&#123;KD&#125;/manifests/ops-files/iaas/gcp/cloud-provider.yml \</span><br><span class="line">-o cfcr-ops.yml -v deployment_name=cfcr \</span><br><span class="line">-l &lt;(bbl outputs)</span><br></pre></td></tr></table></figure>
+<h5 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bosh -d cfcr run-errand apply-specs</span><br><span class="line">bosh -d cfcr run-errand smoke-tests</span><br></pre></td></tr></table></figure>
+<h5 id="文档-3"><a href="#文档-3" class="headerlink" title="文档"></a>文档</h5><p><a href="https://bosh.io/docs/" target="_blank" rel="noopener">https://bosh.io/docs/</a></p>
+
+    </div>
+</article>
+
+
+                </div>
+                <aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get"
+              action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            bluebird
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/avatar.jpg" width="140" height="140"
+                 alt="个人头像" class="author-image">
+            <p class="author-description"></p>
+        </div>
+    </div>
+</aside>
+    
+    <aside id="sidebar-recent_comments">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-comments"></i>
+            最新评论
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush"></ul>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/fuzz/">如何使用工具快速进行fuzz</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/09/20/审计一些不太常见的点/">审计一些不太常见的点</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/24/CVE-2018-15605/">CVE-2018-15605 </a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/18/tgbot/">telegraph机器人</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/04/newpost/">i春秋61挑战 wp</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="sidebar-rand_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            随机文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/08/07/botnet/">僵尸网络</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/22/findbug/">寻找历史漏洞</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/02/metasploit-python-模块/">metasploit python 模块</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/02/05/metasploit-python-模块是如何运行/">metasploit python 模块是如何运行</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2017/11/25/metinfoexp/">metinfo3.5.18后台getshell分析</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/06/12/pycharm/">pycharm插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/05/31/一道简单题目/">一道简单题目</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/11/14/容器部署从入门到入坟/">容器部署从入门到入坟</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/06/缓存漫谈/">缓存漫谈</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2018/10/07/记忆术漫谈/">记忆术漫谈</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+                <li class="">
+                    <a href="/2018/11/14/容器部署从入门到入坟/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                </li>
+                <li class="">
+                    <a href="/2018/11/14/容器部署从入门到入坟/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                </li>
+                <li class="">
+                    <a href="/2018/11/14/容器部署从入门到入坟/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/网络安全/" style="font-size: 14.757164198718456px;" class="tag-cloud-link">网络安全</a>
+    
+    <a href="/tags/web安全/" style="font-size: 14.21115269391909px;" class="tag-cloud-link">web安全</a>
+    
+    <a href="/tags/编程技术/" style="font-size: 14.08941757995883px;" class="tag-cloud-link">编程技术</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 8.011512742615313px;" class="tag-cloud-link">web安全    漏洞分析</a>
+    
+    <a href="/tags/web安全-漏洞分析/" style="font-size: 9.893765231242117px;" class="tag-cloud-link">web安全     漏洞分析</a>
+    
+    <a href="/tags/编程开发/" style="font-size: 11.073580727671317px;" class="tag-cloud-link">编程开发</a>
+    
+    <a href="/tags/漫谈/" style="font-size: 13.188083361658508px;" class="tag-cloud-link">漫谈</a>
+    
+</div>
+                <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
+    
+    <li>
+        <a href="http://kdays.net/days/" target="_blank">KDays Forum</a>
+    </li>
+    
+    <li>
+        <a href="http://www.gal123.com/" target="_blank">绅士导航♂</a>
+    </li>
+    
+    <li>
+        <a href="http://www.moe123.com/" target="_blank">萌导航</a>
+    </li>
+    
+</div>
+                <div class="links tab-pane nav bs-sidenav fade" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/ZEROKISEKI/" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://coding.net/u/SORA1" target="_blank">Coding</a>
+    </li>
+    
+    <li>
+        <a href="https://www.zhihu.com/people/aonosora/activities" target="_blank">知乎</a>
+    </li>
+    
+</div>
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 bluebird Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = '/js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: '/imgs/slide/background',
+      ext: 'jpg',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+<script src="/js/oni.js"></script>
+
+
+
+</html>
